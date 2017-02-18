@@ -14,23 +14,46 @@
 </ul>
 
 <input type='button', value="excute", id="excute_btn">  
+<br />
+<br />
+
+scope test<input type="button", value="excute", id="scope_btn">
+
+<br />
+<br />
+
+
+
+function value test <input type="button", id="func_btn", value="excute">
+
+<br />
+<br />
+
+sort test<input type="button", value="excute", id="sort_btn">
+
+
+<br />
+<br />
+
+closure test<input type="button", value="excute", id="closure_btn">
+
 <script type="text/javascript">
-	$('#excute_btn').click(function(){
-		$('#list li').text('ok');		
-	})
+	function cal(mode){
+		var funcs = {
+			'plus' : function(left, right) {return left+right},
+			'minius' : function(left, right) {return left-right} 
+		}
+		return funcs[mode];
+	}
+	$('#func_btn').click(function(){alert(cal('plus')(3,1))});
 
+	$('#excute_btn').click(
+		function(){
+			$('#list li').text('ok');		
+		}
+		//document.write(cal('plus')(4,1))
+	)
 
-var urlPattern = /\b(?:https?):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*/gim;
-var content = '생활코딩 : http://opentutorials.org/course/1 입니다. 네이버 : http://naver.com 입니다. ';
-var result = content.replace(urlPattern, function(url){
-    return '<a href="'+url+'">'+url+'</a>';
-});
-document.write(result);
-
-</script>
-
-<input type="button", value="excute", id="scope_btn">
-<script type="text/javascript">
 	var vscope = 'global';
 	function fscope(){
 		var vscope = 'local';
@@ -38,6 +61,40 @@ document.write(result);
 	}
 
 	$('#scope_btn').click();
+	document.write('<br/><br/>');
+	var urlPattern = /\b(?:https?):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*/gim;
+	var content = '생활코딩 : http://opentutorials.org/course/1 입니다. 네이버 : http://naver.com 입니다. ';
+	var result = content.replace(urlPattern, function(url){
+	    return '<a href="'+url+'">'+url+'</a>';
+	});
+	document.write(result);
+
+	var numbers = [20,10,9,8,7,6,5,4,3,2,1];
+	var sortfunc = function(a,b){
+		return a - b;	
+	}
+	console.log(numbers.sort(sortfunc));
+
+	function factory_movie(title){
+		return {
+			get_title : function(){
+				return title;
+			},
+			set_title : function(_title){
+				return title = _title;
+			}
+		}
+	}
+
+	ghost = factory_movie("Ghost in the shell");
+	matrix = factory_movie("matrix");
+
+	console.log(ghost.get_title());
+
+	ghost.set_title("공각기동대");
+
+	console.log(ghost.get_title());
+
 
 </script>
 
